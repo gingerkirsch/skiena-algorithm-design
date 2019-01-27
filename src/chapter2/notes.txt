@@ -1,0 +1,39 @@
+Problem: You are given the task of reading n numbers and then printing them out in sorted order.
+Suppose you have access to a balanced dictionary data structure,
+which supports the operations search, insert, delete, minimum, maximum, successor, and predecessor each in O(log n) time.
+1. How can you sort in O(n log n) time using only insert and in-order traversal?
+2. How can you sort in O(nlogn) time using only minimum, successor, and
+insert?
+3. How can you sort in O(nlogn) time using only minimum, insert, delete, search?
+
+1) Insert all n elements, traversal for access in sorted order:
+sort 1()
+    initialize-tree(t)
+    while (not EOF)
+        read(x);
+        insert(x,t):
+    traverse(t)
+
+2) Use min and max to construct the tree. Start from the min and repeatedly succ to traverse in sorted order.
+initialize-tree(t)
+while (not EOF)
+    read(x);
+    insert(x,t);
+y = Minimum(t)
+while (y != null) do
+    print(y -> item)
+    y = successor(y,t)
+
+3) Repeatedly find and delete min element to once again traverse all the elements in sorted order.
+initialize-tree(t)
+while (not EOF)
+    read(x)
+    insert(x,t)
+y = min(t)
+while (y != null) do
+    print(y -> item)
+    Delete(y,t)
+    y = Minimum(t)
+
+Each of these algorithms does a linear number of logarithmic-time ops and hence runs in O(nlogn).
+The key to exploiting balanced binary search trees is using them as black boxes.

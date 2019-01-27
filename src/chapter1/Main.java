@@ -1,3 +1,5 @@
+package chapter1;
+
 import static chapter1.Sort.selectionSort;
 
 public class Main {
