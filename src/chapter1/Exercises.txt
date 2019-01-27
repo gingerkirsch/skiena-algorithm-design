@@ -1,0 +1,151 @@
+Finding Counterexamples
+
+1-1. Show that a + b can be less than min(a, b).
+    For any a < 0 and b < 0.
+
+1-2. Show that a × b can be less than min(a, b).
+    For any a > 0 and b < 0 or vice versa.
+
+1-3. Design/draw a road network with two points a and b such that the fastest route between a and b is not the shortest route.
+    Add speed limit on the shortest route.
+
+1-4. Design/draw a road network with two points a and b such that the shortest route between a and b is not the route with the fewest turns.
+    Make sure the road with fewest turns goes back and forth.
+
+1-5. The knapsack problem is as follows: given a set of integers S = {s1, s2, . . . , sn}, and a target number T,
+    find a subset of S which adds up exactly to T . For example, there exists a subset within S = {1,2,5,9,10} that adds up to T = 22 but not T = 23.
+    Find counterexamples to each of the following algorithms for the knapsack problem.
+    That is, giving an S and T such that the subset is selected using the algorithm does not leave the knapsack completely full,
+    even though such a solution exists.
+S = {1,2,5,9,10} T = 22
+
+    (a) Put the elements of S in the knapsack in left to right order if they fit, i.e. the first-fit algorithm.
+        1 + 2 + 5 + 9 = 17 < 22, 17 + 10 = 27 > 22
+
+    (b) Put the elements of S in the knapsack from smallest to largest, i.e. the best-fit algorithm.
+        Same as above
+
+    (c) Put the elements of S in the knapsack from largest to smallest.
+        10 + 9 = 19 < 22; 19 + 5 = 24 > 22
+
+    ------
+1-6. The set cover problem is as follows: given a set of subsets S1,...,Sm of the universal set U = {1, ..., n},
+    find the smallest subset of subsets T ⊂ S such that ∪ti ∈T ti = U . For example, there are the following subsets,
+    S1 = {1, 3, 5}, S2 = {2,4}, S3 = {1,4}, and S4 = {2,5} The set cover would then be S1 and S2.
+    Find a counterexample for the following algorithm: Select the largest subset for the cover, and then delete all its
+    elements from the universal set. Repeat by adding the subset containing the largest number of uncovered elements until all are covered.
+    For U = (1,2,3,4,5,6,7,8,9)
+    S1 = (1,2,3,4,5,6)
+    S2 = (7,8)
+    S3 = (9)
+    S4 = (1,2,3,4,5)
+    S5 = (6,7,8,9)
+    Algorithm will pick S1,S2,S3 while S4,S5 would be better.
+
+Proofs of Correctness
+
+1-7. Prove the correctness of the following recursive algorithm to multiply two natural numbers, for all integer constants c ≥ 2.
+        function multiply(y, z)
+            comment Return the product yz.
+            1. if z = 0 then return(0) else
+            2. return(multiply(cy, ⌊z/c⌋) + y · (z mod c))
+   For all y and z = 0 the answer is 0 - true. For c < 2 algorithm will "stuck" on line 2.
+   We want to prove multiply(cy, ⌊z/c⌋) + y · (z mod c) for all c >= 2
+   a) Even z and c = 2 => will always lead to dividing z by two and multiplying y by 2.
+   b) Odd z and c = 2 => same as above will happen while the part eaten by div of z/c will be multiplied separately in second part.
+   Increasing c will lead to the case a) or b).
+
+1-8. Prove the correctness of the following algorithm for evaluating a polynomial. P(x) = anxn+an−1xn−1+⋯+a1x+a0
+        function horner(A,x)
+              p=An
+              for i from n−1 to 0
+                      p=p∗x+Ai
+              return p
+   Base case : An = 0 => we get 0 from both parts. Etc..
+
+1-9. Prove the correctness of the following sorting algorithm.
+    function bubblesort (A : list[1…n])
+          var int i,j
+          for i from n to 1
+              for j from 1 to i−1
+                  if (A[j]>A[j+1])
+                      swap the values of A[j] and A[j+1]
+    Base case: empty list - ok. list of size 1 - ok. list of size 2 -> swaps if needed. further cases will be reduced to those three.
+
+Induction
+
+1-10. Prove that ∑ni=1i=n(n+1)/2 for n≥0, by induction.   For n = 0,1,2,3... for n
+1-11. Prove that ∑ni=1i2=n(n+1)(2n+1)/6 for n≥ 0, by induction.        For n = 0,1,2,3... for n
+1-12. Prove that ∑ni=1i3=n2(n+1)2/4 for n≥0, by induction.      same
+1-13. Prove that ∑ni=1i(i+1)(i+2)=n(n+1)(n+2)(n+3)/4        same
+1-14. Prove by induction on n≥1 that for every a≠1, ∑ni=0ai=an+1−1a−1 }     same
+1-15. Prove by induction that for n≥1, ∑ni=11i(i+1)=nn+1        same
+1-16. Prove by induction that n3+2n is divisible by 3 for all n≥0.      same
+1-17. Prove by induction that a tree with n vertices has exactly n−1 edges.    yes as the leaves are not connected among themselves and root is nth verticle
+1-18. Prove by mathematical induction that the sum of the cubes of the first n positive integers is equal to the square of the sum of these integers, i.e. ∑ni=1i3=(∑ni=1i)2
+
+
+Estimation
+
+1-19. Do all the books you own total at least one million pages?
+      Let's say a book contains 200 pages at average. 1000000 / 200 ~ 5000 books - the answer is no.
+      How many total pages are stored in your school library?   No
+1-20. How many words are there in this textbook?        765 * 150
+1-21. How many hours are one million seconds? 1000000 (/ 60 => minutes, /60 => hours) => 1000000 / 3600 = 10000 / 36 = 278
+      How many days? 278 / 24 h = 11.58 days
+      Answer these questions by doing all arithmetic in your head.
+1-22. Estimate how many cities and towns there are in the United States.    50 states - lets say 100 cities and 500 towns per each, 600 * 50 = 3000
+1-23. Estimate how many cubic miles of water flow out of the mouth of the Mississippi River each day.
+      Do not look up any supplemental facts. Describe all assumptions you made in arriving at your answer.
+      It would be something like width x depth x velocity per hour.
+      We need to take in count if it rains / snow melts / etc.
+1-24. Is disk drive access time normally measured in milliseconds (thousandths of a second) or microseconds (millionths of a second)?   Milliseconds
+      Does your RAM memory access a word in more or less than a microsecond?    yes
+      How many instructions can your CPU execute in one year if the machine is left running all the time?
+      1 year is 365 days is 8760 hours is 525600 minutes is 31536000 seconds +000 milliseconds, lets say 1 instruction per millisecond
+1-25. A sorting algorithm takes 1 second to sort 1,000 items on your local machine. How long will it take to sort 10,000 items. . . 10 times more
+(a) if you believe that the algorithm takes time proportional to n2 => 10 times in square = 100 seconds
+(b) if you believe that the algorithm takes time roughly proportional to n log n?   10 * log 10 = 10 sec
+
+Implementation Projects
+1-26. Implement the two TSP heuristics of Section 1.1 (page 5).
+    Which of them gives better-quality solutions in practice? Can you devise a heuristic that works better than both of them?
+1-27. Describe how to test whether a given set of tickets establishes sufficient coverage in the Lotto problem of Section 1.6 (page 23).
+    Write a program to find good ticket sets.
+
+Interview Problems
+1-28. Write a function to perform integer division without using either the / or * operators. Find a fast way to do it.
+    public static int div(int n, int m) throws IllegalArgumentException {
+        if (m == 0) throw new IllegalArgumentException("Division by zero");
+        if (n == 0) return 0;
+        if (m > n) return 0;
+        return 1 + div(n-m,m);
+    }
+
+    public static int mod(int n, int m) throws IllegalArgumentException {
+        if (m == 0) throw new IllegalArgumentException("Division by zero");
+        if (n == 0) return 0;
+        if (n < m) return n;
+        return mod(n-m,m);
+    }
+
+1-29. There are 25 horses. At most, 5 horses can race together at a time. You must determine the fastest, second fastest, and third fastest horses.
+    Find the minimum number of races in which this can be done.
+    It is a tree of 5-arity => 6
+
+1-30. How many piano tuners are there in the entire world?
+Fermi problem. Parameters: how many families have piano, how often do they tune. How much do they work. How many households are there in the world?
+
+1-31. How many gas stations are there in the United States?
+How many states = 50. Each states approx? Rich / poor? Type of cars? How often do they refuel?
+
+1-32. How much does the ice in a hockey rink weigh? Requires rubber inside so the weight of that rubber + the ice itself.
+
+1-33. How many miles of road are there in the United States? 50 states, roads per state. Alaska doesn't have many.
+1-34. On average, how many times would you have to flip open the Manhattan phone book at random in order to find a specific name?
+Depends how do we open? If can repeat or not. Theory of probability. Or binary search.
+
+Programming Challenges
+These programming challenge problems with robot judging are available at http://www.programming-challenges.com or http://online-judge.uva.es.
+1-1. “The 3n + 1 Problem” – Programming Challenges 110101, UVA Judge 100. 1-2. “The Trip” – Programming Challenges 110103, UVA Judge 10137.
+1-3. “Australian Voting” – Programming Challenges 110108, UVA Judge 10142.
